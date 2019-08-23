@@ -4,6 +4,20 @@ RSpec.describe "Get Album", type: :request do
   describe "GET /api/v1/albums/:id" do
     let(:album) {
       # set up an album to get
+      context "with valid album" do
+        describe "GET spec/requests/api/v1/albums/get_album_spec.rb" do
+          before do
+            artist.albums.create!(name: "Cool Album")
+            artist.albums.create!(name: "Lame Album")
+          end
+    
+          it "vaild name" do
+            expect(:name).to !nil?
+            album = { name: !nil?, title: nil, body: nil }
+          end
+
+        end
+      end
     }
 
     it "gets the album" do
