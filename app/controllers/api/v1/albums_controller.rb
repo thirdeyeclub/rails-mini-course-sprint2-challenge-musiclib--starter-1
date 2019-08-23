@@ -5,7 +5,10 @@ module Api
         if params[:artist_id].present?
           @albums = Artist.find(params[:artist_id]).albums.where(available: true).order(:name)
         else
-          @albums = Album.where(available: true).order(:name).all
+          # @albums = Album.where(available: true).order(:name).all
+          scope :album, -> { where(:available => true)}
+          scope :album, -> { where(:name => present?)}
+          # Ex:- scope :active, -> {where(:active => true)}
         end
 
         render json: @albums.map { |album| format_album_json(album) }
